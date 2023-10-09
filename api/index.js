@@ -5,7 +5,7 @@ const nodeMailer = require('nodemailer')
 const cors = require('cors')
 const jwt = require('jsonwebtoken')
 
-const connectDB = require('./Data/db');
+const connectDB = require('./Database/db');
 
 const app = express()
 const port = process.env.PORT
