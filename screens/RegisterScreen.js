@@ -89,7 +89,7 @@ const RegisterScreen = () => {
           <Text style={{ textAlign: "center", color: "white", fontSize: 16, fontWeight: "bold" }}>Register</Text>
         </Pressable>
 
-        <Pressable onPress={() => navigation.navigate("Login")} style={{ marginTop: 15 }}>
+        <Pressable onPress={() => navigation.goBack()} style={{ marginTop: 15 }}>
           <Text style={{ textAlign: "center", color: "gray", fontSize: 16 }}>Already Have an accoun? Sign in</Text>
         </Pressable>
       </KeyboardAvoidingView>
