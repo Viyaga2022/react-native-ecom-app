@@ -1,20 +1,28 @@
 const express = require('express')
 const dotenv = require('dotenv').config()
 const bodyParser = require('body-parser')
-const nodeMailer = require('nodemailer')
 const cors = require('cors')
-const jwt = require('jsonwebtoken')
 
-const connectDB = require('./Database/db');
+const userRouter = require('./routers/userRoutes')
+const errorHandler = require('./middlewares/errorMiddleware')
+const connectDB = require('./Database/db')
 
 const app = express()
 const port = process.env.PORT
-connectDB();
+connectDB()
 
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
+app.use('/api/user', userRouter)
+
+app.get('/api/hello', (req,res) => {
+    res.status(200).send("Hello API")
+})
+
+
+app.use(errorHandler)
 app.listen(port, () => {
-    console.log(`app listening to the port ${port}`)
-});
+    console.log(`app running on port ${port}`)
+})
