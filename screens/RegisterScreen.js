@@ -1,17 +1,47 @@
-import { StyleSheet, Text, View, Image, SafeAreaView, KeyboardAvoidingView, TextInput, Pressable } from 'react-native'
-import React, { useState } from 'react'
+import { StyleSheet, Text, View, Image, SafeAreaView, KeyboardAvoidingView, TextInput, Pressable, Alert } from 'react-native'
+import React from 'react'
 import { MaterialIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import axios from 'axios';
 
 const amazonLogo = require("../assets/amazon-logo.png")
 
 const RegisterScreen = () => {
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const [name, setName] = React.useState("")
+  const [userEmail, setUserEmail] = React.useState("")
+  const [password, setPassword] = React.useState("")
   const navigation = useNavigation()
+
+  const handleRegister = () => {
+
+    const userData = {
+      name: name,
+      email: userEmail,
+      password: password,
+    }
+
+    console.log({ inputData: userData })
+    //Send Request to backend API
+    axios.post('http://10.0.2.2:6000/api/user/register', userData)
+      .then((response) => {
+        console.log(response.data)
+        if (response.data.registrationStatus === "success") {
+          Alert.alert("Registeration Successfull", response.data.message)
+          setName("")
+          setUserEmail("")
+          setPassword("")
+        } else {
+          Alert.alert("", response.data.message)
+        }
+      })
+      .catch((error) => {
+        console.log(error)
+        Alert.alert("Registeration Failed", "An error occurred")
+      })
+
+  }
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "white", alignItems: "center", marginTop: 30 }}>
@@ -40,7 +70,7 @@ const RegisterScreen = () => {
             }}
           >
             <Ionicons style={{ marginLeft: 8 }} name="ios-person" size={24} color="gray" />
-            <TextInput value={name} onChange={(text) => setName(text)} style={{ color: "gray", marginVertical: 10, width: 300, fontSize: name ? 16 : 16 }} placeholder='Enter Your Name' />
+            <TextInput value={name} onChange={(value) => { console.log(value.nativeEvent.text); setName(value.nativeEvent.text) }} style={{ color: "gray", marginVertical: 10, width: 300, fontSize: name ? 16 : 16 }} placeholder='Enter Your Name' />
           </View>
         </View>
 
@@ -57,7 +87,7 @@ const RegisterScreen = () => {
             }}
           >
             <MaterialIcons style={{ marginLeft: 8 }} name="email" size={24} color="gray" />
-            <TextInput value={email} onChange={(text) => setEmail(text)} style={{ color: "gray", marginVertical: 10, width: 300, fontSize: email ? 16 : 16 }} placeholder='Enter Your Email' />
+            <TextInput value={userEmail} onChange={(value) => { console.log(value.nativeEvent.text); setUserEmail(value.nativeEvent.text) }} style={{ color: "gray", marginVertical: 10, width: 300, fontSize: userEmail ? 16 : 16 }} placeholder='Enter Your Email' />
           </View>
         </View>
 
@@ -74,7 +104,7 @@ const RegisterScreen = () => {
             }}
           >
             <AntDesign style={{ marginLeft: 8 }} name="lock1" size={24} color="black" />
-            <TextInput value={password} onChange={(text) => setPassword(text)} secureTextEntry={true} style={{ color: "gray", marginVertical: 10, width: 300 }} placeholder='Enter Your Password' />
+            <TextInput value={password} onChange={(value) => { console.log(value.nativeEvent.text); setPassword(value.nativeEvent.text) }} secureTextEntry={true} style={{ color: "gray", marginVertical: 10, width: 300 }} placeholder='Enter Your Password' />
           </View>
         </View>
 
@@ -85,7 +115,7 @@ const RegisterScreen = () => {
 
         <View style={{ marginTop: 50 }} />
 
-        <Pressable style={{ width: 200, backgroundColor: "#FEBE10", padding: 15, marginLeft: "auto", marginRight: "auto", borderRadius: 6 }}>
+        <Pressable onPress={handleRegister} style={{ width: 200, backgroundColor: "#FEBE10", padding: 15, marginLeft: "auto", marginRight: "auto", borderRadius: 6 }}>
           <Text style={{ textAlign: "center", color: "white", fontSize: 16, fontWeight: "bold" }}>Register</Text>
         </Pressable>
 

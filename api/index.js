@@ -17,10 +17,9 @@ app.use(bodyParser.json())
 
 app.use('/api/user', userRouter)
 
-app.get('/api/hello', (req,res) => {
+app.get('/api/hello', (req, res) => {
     res.status(200).send("Hello API")
 })
-
 
 app.use(errorHandler)
 app.listen(port, () => {
