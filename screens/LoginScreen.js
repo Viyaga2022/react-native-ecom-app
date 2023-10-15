@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Image, SafeAreaView, KeyboardAvoidingView, TextInput, Pressable, Alert } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { MaterialIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
@@ -12,6 +12,32 @@ const LoginScreen = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const navigation = useNavigation()
+  const checkLoginStatus = async () => {
+    try {
+      const token = await AsyncStorage.getItem('auth')
+      console.log(token)
+      if (token) {
+        navigation.replace('Main')
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  checkLoginStatus()
+  // useEffect(() => {
+  //   const checkLoginStatus = async () => {
+  //     try {
+  //       const token = await AsyncStorage.getItem('auth')
+  //       console.log(token)
+  //       if (token) {
+  //         navigation.replace('Main')
+  //       }
+  //     } catch (error) {
+  //       console.log(error)
+  //     }
+  //   }
+  //   checkLoginStatus()
+  // }, [])
 
   const handleLogin = () => {
     const loginData = {
@@ -24,7 +50,7 @@ const LoginScreen = () => {
         if (response.data.loginStatus) {
           const token = response.data.jwtToken
           AsyncStorage.setItem('auth', token)
-          navigation.replace('Home')
+          navigation.replace('Main')
         } else {
           Alert.alert(response.data.message, "If Don't have an account please Sign up")
         }
