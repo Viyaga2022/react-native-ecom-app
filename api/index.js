@@ -15,6 +15,12 @@ app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
+app.use(express.static('public'));
+console.log(__dirname)
+app.get('/', (req, res) => {
+    res.send('Hello World!');
+});
+
 app.use('/api/user', userRouter)
 
 app.get('/api/hello', (req, res) => {

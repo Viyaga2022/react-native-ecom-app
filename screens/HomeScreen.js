@@ -1,30 +1,52 @@
 import { StyleSheet, Text, View, SafeAreaView, Platform, ScrollView, Pressable, TextInput, Image } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { Feather } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
-import MuttonImg from '../assets/mutton.png'
-import ChickenImg from '../assets/chicken.png'
+import { BASE_URL } from '@env'
+import { SliderBox } from 'react-native-image-slider-box'
 
-const Category = ({ image, text }) => {
-    console.log(image)
+const Category = ({ image, title }) => {
     return (
         <Pressable style={{ margin: 10, justifyContent: "center", alignItems: "center" }}>
-            <Image source={image} style={{ width: 50, height: 50, borderRadius: 50, resizeMode: "contain" }} />
-            <Text style={{ textAlign: "center", marginTop: 5, fontSize: 12, fontWeight: 500 }}>{text}</Text>
+            <Image source={{ uri: BASE_URL + image }} style={{ width: 50, height: 50, borderRadius: 50, resizeMode: "contain" }} />
+            <Text style={{ textAlign: "center", marginTop: 5, fontSize: 12, fontWeight: 500 }}>{title}</Text>
         </Pressable>
     )
-
 }
 
 const HomeScreen = () => {
+    const [categories, setCategories] = useState([])
+    const [sliders, setSliders] = useState([])
+
+
+    useEffect(() => {
+        const categorieArray = [
+            { image: '/assets/images/mutton.png', title: 'Mutton' },
+            { image: '/assets/images/chicken.png', title: 'Chicken' },
+            { image: '/assets/images/mutton.png', title: 'Mutton' },
+            { image: '/assets/images/chicken.png', title: 'Chicken' },
+            { image: '/assets/images/mutton.png', title: 'Mutton' },
+            { image: '/assets/images/chicken.png', title: 'Chicken' },
+        ]
+
+        const slidersArray = [
+            require('../assets/slider1.png'),
+            require('../assets/slider2.png'),
+            require('../assets/slider3.png')
+        ]
+
+        console.log(slidersArray[2])
+        setCategories(categorieArray)
+        setSliders(slidersArray)
+
+    }, [])
 
     const checkLoginStatus = async () => {
         try {
             const token = await AsyncStorage.getItem('auth')
-            console.log(token)
             if (!token) {
                 navigation.replace('Login')
             }
@@ -40,7 +62,7 @@ const HomeScreen = () => {
                 <View style={{ backgroundColor: "#00CED1", flexDirection: "row", padding: 10 }}>
                     <Pressable style={{ flexDirection: "row", alignItems: "center", backgroundColor: "white", flex: 1, gap: 10, marginHorizontal: 7, borderRadius: 3, height: 38 }}>
                         <AntDesign style={{ paddingLeft: 10 }} name="search1" size={24} color="black" />
-                        <TextInput placeholder='Search amazon.in' />
+                        <TextInput placeholder='Search' />
                     </Pressable>
                     <Feather name="mic" size={24} color="black" />
                 </View>
@@ -52,13 +74,14 @@ const HomeScreen = () => {
                     </Pressable>
                 </View>
                 <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                    <Category image={MuttonImg} text="Mutton" />
-                    <Category image={ChickenImg} text="Chicken" />
-                    <Category image={MuttonImg} text="Mutton" />
-                    <Category image={ChickenImg} text="Chicken" />
-                    <Category image={MuttonImg} text="Mutton" />
-                    <Category image={ChickenImg} text="Chicken" />
+                    {categories.map((categorie, index) => {
+                        return (
+                            <Category key={index} image={categorie.image} text={categorie.title} />
+                        )
+                    })}
                 </ScrollView>
+
+                <SliderBox images={sliders} sliderBoxHeight={175} autoPlay circleLoop dotColor='#13274F' inactiveDotColor='#90A4AE' ImageComponentStyle={{ width: '100%' }} />
             </ScrollView>
         </SafeAreaView>
     )
