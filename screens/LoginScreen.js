@@ -4,7 +4,6 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios'
-import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const amazonLogo = require("../assets/amazon-logo.png")
 
@@ -12,18 +11,7 @@ const LoginScreen = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const navigation = useNavigation()
-  const checkLoginStatus = async () => {
-    try {
-      const token = await AsyncStorage.getItem('auth')
-      console.log(token)
-      if (token) {
-        navigation.replace('Main')
-      }
-    } catch (error) {
-      console.log(error)
-    }
-  }
-  checkLoginStatus()
+  
   // useEffect(() => {
   //   const checkLoginStatus = async () => {
   //     try {
