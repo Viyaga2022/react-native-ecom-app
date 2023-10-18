@@ -5,7 +5,9 @@ import CheckLoginStatus from '../components/CheckLoginStatus'
 import SearchBar from '../components/SearchBar'
 import LocationBar from '../components/LocationBar'
 import Categories from '../components/Categories'
-import Carousel from '../components/Carousel'
+import Carousel from '../sections/Carousel'
+import PopularProducts from '../sections/PopularProducts'
+import DealOfTheDay from '../sections/DealOfTheDay'
 
 const HomeScreen = () => {
     return (
@@ -17,6 +19,8 @@ const HomeScreen = () => {
                     <LocationBar />
                     <Categories />
                     <Carousel />
+                    <PopularProducts />
+                    <DealOfTheDay />
                 </ScrollView>
             </SafeAreaView>
         </>

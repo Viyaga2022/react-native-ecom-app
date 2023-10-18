@@ -32,7 +32,7 @@ const Categories = () => {
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             {categories.map((categorie, index) => {
                 return (
-                    <Category key={index} image={categorie.image} text={categorie.title} />
+                    <Category key={index} image={categorie.image} title={categorie.title} />
                 )
             })}
         </ScrollView>

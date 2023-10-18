@@ -22,7 +22,7 @@ const Carousel = () => {
     return (
         <SliderBox
             images={sliders}
-            sliderBoxHeight={175}
+            sliderBoxHeight={200}
             autoPlay
             circleLoop
             dotColor='#13274F'
