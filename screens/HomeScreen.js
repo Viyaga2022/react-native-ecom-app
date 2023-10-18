@@ -8,6 +8,7 @@ import Categories from '../components/Categories'
 import Carousel from '../sections/Carousel'
 import PopularProducts from '../sections/PopularProducts'
 import DealOfTheDay from '../sections/DealOfTheDay'
+import Products from '../components/Products'
 
 const HomeScreen = () => {
     return (
@@ -21,6 +22,7 @@ const HomeScreen = () => {
                     <Carousel />
                     <PopularProducts />
                     <DealOfTheDay />
+                    <Products />
                 </ScrollView>
             </SafeAreaView>
         </>

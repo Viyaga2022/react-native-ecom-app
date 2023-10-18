@@ -14,7 +14,7 @@ const DealOfTheDay = () => {
   const [deals, setDeals] = useState([])
 
   useEffect(() => {
-    
+
     const dealsArray = [
       { image: "https://w3meat.dexignzone.com/xhtml/assets/images/product/5.jpg", offer: "40%" },
       { image: "https://w3meat.dexignzone.com/xhtml/assets/images/product/2.jpg", offer: "25%" },
@@ -32,9 +32,8 @@ const DealOfTheDay = () => {
       <Title title={"Deal of the Day"} />
       <ScrollView horizontal showsHorizontalScrollIndicator={false} >
         {deals.map((item, index) => {
-          console.log(item.image)
           return (
-            <Offers image={item.image} offer={item.offer} />
+            <Offers key={index} image={item.image} offer={item.offer} />
           )
 
         })}
