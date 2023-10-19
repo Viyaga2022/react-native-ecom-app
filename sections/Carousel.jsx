@@ -16,7 +16,6 @@ const Carousel = () => {
         ]
 
         setSliders(slidersArray)
-        console.log('Carousel');
     }, [])
 
     return (

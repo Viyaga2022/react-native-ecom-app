@@ -22,7 +22,7 @@ const HomeScreen = () => {
                     <Carousel />
                     <PopularProducts />
                     <DealOfTheDay />
-                    <Products />
+                    {/* <Products /> */}
                 </ScrollView>
             </SafeAreaView>
         </>

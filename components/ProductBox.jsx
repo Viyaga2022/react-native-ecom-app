@@ -5,7 +5,7 @@ const ProductBox = ({ item }) => {
     return (
         <Pressable style={{ margin: 20 }}>
             <Image source={{ uri: item.image }} style={{ width: 150, height: 150, resizeMode: "contain", borderRadius: 5 }} />
-            <Text numberOfLines={1} style={{ fontSize: 16, fontWeight: 400, marginTop: 10 }}>{item.title}</Text>
+            <Text numberOfLines={1} style={{ fontSize: 16, fontWeight: 400, marginTop: 10, width: 150 }}>{item.title}</Text>
             <View style={{ marginTop: 5, flexDirection: "row", justifyContent: "space-between" }}>
                 <Text style={{ fontSize: 15, fontWeight: "bold" }}>{item.price}</Text>
                 <Text style={{ color: "#FFC72C", fontSize: 15, fontWeight: "bold" }}>{item.rating} ratings</Text>
