@@ -9,13 +9,13 @@ const Products = () => {
   const [open, setOpen] = useState(false)
   const [category, setCategory] = useState("all products")
   const [items, setItems] = useState([
-    { label: "All Products", value: "all products" },
+    { label: "All", value: "all products" },
     { label: "Mutton", value: "mutton" },
     { label: "Chicken", value: "chicken" },
     { label: "Duck", value: "duck" },
     { label: "Pork", value: "pork" }
   ])
-  console.log({ products });
+  
   const onGenderOpen = useCallback(() => {
     setCompanyOpen(false)
   }, [])

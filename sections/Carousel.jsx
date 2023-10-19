@@ -24,8 +24,8 @@ const Carousel = () => {
             sliderBoxHeight={200}
             autoPlay
             circleLoop
-            dotColor='#13274F'
-            inactiveDotColor='#90A4AE'
+            dotColor='#F9906f'
+            inactiveDotColor='white'
             ImageComponentStyle={{ width: '100%' }}
         />
     )
