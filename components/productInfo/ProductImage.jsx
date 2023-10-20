@@ -1,20 +1,18 @@
 import { Dimensions, ImageBackground, Platform, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { useNavigation, useRoute } from '@react-navigation/native'
+import { useNavigation } from '@react-navigation/native'
 import { AntDesign } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 
-const ProductImage = () => {
-    const route = useRoute()
-    const item = route.params.item
+const ProductImage = ({ image }) => {
     const { width } = Dimensions.get("window")
     const height = width * 75 / 100
 
     const navigation = useNavigation()
     return (
-        <>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} >
             <ScrollView style={{ position: "relative" }} horizontal showHorizontalScrollIndicator={false}>
-                <ImageBackground source={{ uri: item.image }} style={{ width, height, resizeMode: "contain" }} />
+                <ImageBackground source={{ uri: image }} style={{ width, height, resizeMode: "contain" }} />
             </ScrollView>
 
             <Pressable
@@ -32,7 +30,7 @@ const ProductImage = () => {
                 }}>
                 <AntDesign name="arrowleft" size={24} color="white" />
             </Pressable>
-            
+
             <Pressable
                 style={{
                     width: 40,
@@ -47,7 +45,7 @@ const ProductImage = () => {
                 }}>
                 <Ionicons name="heart-sharp" size={24} color="white" />
             </Pressable>
-        </>
+        </ScrollView>
     )
 }
 
