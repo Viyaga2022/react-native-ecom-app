@@ -10,13 +10,7 @@ const Offers = ({ item }) => {
     <Pressable
       style={{ margin: 10 }}
       onPress={() => navication.navigate("ProductInfo", {
-        id: item.id,
-        title: item.title,
-        description: item.description,
-        image: item.image,
-        rating: item.rating,
-        oldPrice: item.oldPrice,
-        price: item.price,
+        item: item
       })}
     >
       <Image source={{ uri: item.image }} style={{ borderRadius: 10, resizeMode: "contain" }} width={150} height={150} />

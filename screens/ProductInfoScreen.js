@@ -1,12 +1,17 @@
-import { Platform, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import SearchBar from '../components/SearchBar'
+import ProductImage from '../components/ProductInfo/ProductImage'
+import ProductTitleDescription from '../components/productInfo/ProductTitleDescription'
 
 const ProductInfoScreen = () => {
   return (
-    <ScrollView style={{marginTop: Platform.OS === "android"?40: 55, flex:1, backgroundColor:"white"}} showsVerticalScrollIndicator={false} >
-      <SearchBar />
+    <ScrollView>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false} >
+        <ProductImage />
+      </ScrollView>
+      <ProductTitleDescription />
     </ScrollView>
+
   )
 }
 
