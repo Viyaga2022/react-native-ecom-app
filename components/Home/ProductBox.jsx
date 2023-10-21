@@ -1,9 +1,17 @@
 import { StyleSheet, Text, View, Pressable, Image } from 'react-native'
 import React from 'react'
+import { useNavigation } from '@react-navigation/native'
 
 const ProductBox = ({ item }) => {
+    const navigation = useNavigation()
+    console.log(item);
     return (
-        <Pressable style={{ margin: 20 }}>
+        <Pressable
+            onPress={() => navigation.navigate("ProductInfo", {
+                item: item
+            })}
+            style={{ margin: 20 }}
+        >
             <Image source={{ uri: item.image }} style={{ width: 150, height: 150, resizeMode: "contain", borderRadius: 5 }} />
             <Text numberOfLines={1} style={{ fontSize: 16, fontWeight: 400, marginTop: 10, width: 150 }}>{item.title}</Text>
             <View style={{ marginTop: 5, flexDirection: "row", justifyContent: "space-between" }}>

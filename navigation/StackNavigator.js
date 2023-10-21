@@ -10,6 +10,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import ProductInfoScreen from '../screens/ProductInfoScreen'
+import AddAddressScreen from '../screens/AddAddressScreen'
 
 const StackNavigator = () => {
     const Stack = createNativeStackNavigator();
@@ -75,6 +76,7 @@ const StackNavigator = () => {
                 <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="Register" component={RegisterScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="ProductInfo" component={ProductInfoScreen} options={{ headerShown: false }} />
+                <Stack.Screen name="AddAddress" component={AddAddressScreen} options={{ headerShown: false }} />
             </Stack.Navigator>
         </NavigationContainer>
     )
