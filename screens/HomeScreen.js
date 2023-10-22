@@ -9,6 +9,7 @@ import Carousel from '../sections/Carousel'
 import PopularProducts from '../sections/PopularProducts'
 import DealOfTheDay from '../sections/DealOfTheDay'
 import Products from '../components/home/Products'
+import AddressModal from '../sections/AddressModal'
 
 const HomeScreen = () => {
     return (
@@ -25,6 +26,7 @@ const HomeScreen = () => {
                     <Products />
                 </ScrollView>
             </SafeAreaView>
+            <AddressModal />
         </>
     )
 }

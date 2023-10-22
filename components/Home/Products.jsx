@@ -3,7 +3,6 @@ import React, { useCallback, useEffect, useState } from 'react'
 
 import ProductBox from './ProductBox'
 import DropDownPicker from 'react-native-dropdown-picker'
-import { useSelector } from 'react-redux'
 
 const Products = () => {
   const [products, setProducts] = useState([])
@@ -43,9 +42,6 @@ const Products = () => {
 
     setProducts(productsArray)
   }, [])
-
-  const cart = useSelector((state) => state.cart.cart)
-  console.log(cart);
 
   return (
     <>
