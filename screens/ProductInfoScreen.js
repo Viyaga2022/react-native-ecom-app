@@ -1,4 +1,4 @@
-import { Dimensions, Platform, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import ProductImage from '../components/productInfo/ProductImage'
 import ProductTitleDescription from '../components/productInfo/ProductTitleDescription'
@@ -10,7 +10,7 @@ import CartAndBuyButton from '../components/productInfo/CartAndBuyButton'
 const ProductInfoScreen = () => {
   const route = useRoute()
   const item = route.params.item
-  const { height } = Dimensions.get('window')
+ 
 
   return (
     <ScrollView style={{ backgroundColor: "white", flex: 1 }}>
@@ -21,7 +21,7 @@ const ProductInfoScreen = () => {
         <PriceAndQuantity price={item.price} oldPrice={item.oldPrice} />
       </View>
       <Text style={{ height: 1, backgroundColor: "rgba(0, 150, 136, 0.20)", marginVertical: 20 }}></Text>
-      <CartAndBuyButton />
+      <CartAndBuyButton item={item} />
     </ScrollView>
   )
 }

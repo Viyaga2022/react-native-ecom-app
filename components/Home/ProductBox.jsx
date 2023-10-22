@@ -1,10 +1,23 @@
 import { StyleSheet, Text, View, Pressable, Image } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
+import { useDispatch } from 'react-redux'
+import { addToCart } from '../../redux/CartSlice'
 
 const ProductBox = ({ item }) => {
+    const [addToCartText, setAddToCartText] = useState("Add To Cart")
     const navigation = useNavigation()
-    console.log(item);
+    const dispatch = useDispatch()
+
+    const addToCartClicked = ({ item }) => {
+        if (addToCartText === "Add To Cart") {
+            setAddToCartText("Added To Cart")
+            dispatch(addToCart(item))
+            setTimeout(() => {
+                setAddToCartText("Add To Cart")
+            }, 60000)
+        }
+    }
     return (
         <Pressable
             onPress={() => navigation.navigate("ProductInfo", {
@@ -18,8 +31,8 @@ const ProductBox = ({ item }) => {
                 <Text style={{ fontSize: 15, fontWeight: "bold" }}>{item.price}</Text>
                 <Text style={{ color: "#FFC72C", fontSize: 15, fontWeight: "bold" }}>{item.rating} ratings</Text>
             </View>
-            <Pressable style={{ marginTop: 12, alignItems: "center", justifyContent: "center", padding: 10, backgroundColor: "#FFC72C", borderRadius: 20, marginHorizontal: 10 }}>
-                <Text style={{ fontSize: 15, fontWeight: 500 }}>Add to Cart</Text>
+            <Pressable onPress={() => addToCartClicked({ item })} style={{ marginTop: 12, alignItems: "center", justifyContent: "center", padding: 10, backgroundColor: "#FFC72C", borderRadius: 20, marginHorizontal: 10 }}>
+                <Text style={{ fontSize: 15, fontWeight: 500 }}>{addToCartText}</Text>
             </Pressable>
         </Pressable>
     )
