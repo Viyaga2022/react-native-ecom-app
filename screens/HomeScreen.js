@@ -1,5 +1,6 @@
-import { StyleSheet, SafeAreaView, Platform, ScrollView } from 'react-native'
+import { StyleSheet, ScrollView, View } from 'react-native'
 import React from 'react'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 import CheckLoginStatus from '../components/CheckLoginStatus'
 import SearchBar from '../components/home/SearchBar'
@@ -8,14 +9,24 @@ import Categories from '../components/home/Categories'
 import Carousel from '../sections/Carousel'
 import PopularProducts from '../sections/PopularProducts'
 import DealOfTheDay from '../sections/DealOfTheDay'
-import Products from '../components/home/Products'
+import Products from '../sections/Products'
 import AddressModal from '../sections/AddressModal'
 
 const HomeScreen = () => {
+    const insets = useSafeAreaInsets()
+    
     return (
         <>
             <CheckLoginStatus />
-            <SafeAreaView style={{ paddingTop: Platform.OS === "android" ? 40 : 0, flex: 1 }}>
+            <View
+                style={{
+                    flex: 1,
+                    paddingTop: insets.top,
+                    paddingBottom: insets.bottom,
+                    paddingLeft: insets.left,
+                    paddingRight: insets.right
+                }}
+            >
                 <ScrollView>
                     <SearchBar />
                     <AddressBar />
@@ -24,9 +35,9 @@ const HomeScreen = () => {
                     <PopularProducts />
                     <DealOfTheDay />
                     <Products />
+                    <AddressModal />
                 </ScrollView>
-            </SafeAreaView>
-            <AddressModal />
+            </View>
         </>
     )
 }

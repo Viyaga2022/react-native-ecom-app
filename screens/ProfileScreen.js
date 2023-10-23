@@ -1,9 +1,8 @@
-import { Dimensions, Pressable, StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
-const AddAddressScreen = () => {
-  const { height } = Dimensions.get("window")
+const ProfileScreen = () => {
   const insets = useSafeAreaInsets()
   
   return (
@@ -17,13 +16,11 @@ const AddAddressScreen = () => {
         backgroundColor: "white"
       }}
     >
-      <Pressable style={{ borderWidth: 1, position: 'absolute', bottom: 0, width: 300, justifyContent: 'center', alignItems: "center" }}>
-        <Text>Hello</Text>
-      </Pressable>
+      <Text>ProfileScreen</Text>
     </View>
   )
 }
 
-export default AddAddressScreen
+export default ProfileScreen
 
 const styles = StyleSheet.create({})

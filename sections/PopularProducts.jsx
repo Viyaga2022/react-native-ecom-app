@@ -1,6 +1,6 @@
 import { Pressable, StyleSheet, Text, View, Image } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import Title from '../components/Title'
+import Title from '../components/home/Title'
 import { useNavigation } from '@react-navigation/native'
 
 const Products = ({ item }) => {

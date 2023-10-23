@@ -1,16 +1,19 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React, { useState } from 'react'
-import { BottomModal, ModalContent, SlideAnimation } from 'react-native-modals'
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native'
+import React from 'react'
+import { BottomModal, SlideAnimation } from 'react-native-modals'
 import { useDispatch, useSelector } from 'react-redux'
 import { setAddressModalVisible } from '../redux/CommonSlice'
+import AddressModalContent from '../components/Address/AddressModalContent'
+import { useNavigation } from '@react-navigation/native'
 
 const AddressModal = () => {
-   const modalVisible = useSelector((state) => state.common.AddressModalVisible)
-   const dispatch = useDispatch()
-   const setModalVisible = (bool) => {
-    dispatch(setAddressModalVisible(bool))
-   }
-   
+    const modalVisible = useSelector((state) => state.common.AddressModalVisible)
+    const dispatch = useDispatch()
+    const navigation = useNavigation()
+    const setModalVisible = (bool) => {
+        dispatch(setAddressModalVisible(bool))
+    }
+
     return (
         <BottomModal
             visible={modalVisible}
@@ -24,11 +27,7 @@ const AddressModal = () => {
             swipeDirection={["up", "down"]}
             swipeThreshold={200}
         >
-            <ModalContent style={{width:"100%", height:400}}>
-                <View>
-                    <Text>Choose Your Location</Text>
-                </View>
-            </ModalContent>
+           <AddressModalContent navigation={navigation} />
         </BottomModal>
     )
 }

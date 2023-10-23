@@ -13,7 +13,7 @@ const AddressBar = () => {
     }
 
     return (
-        <Pressable onPress={() => setModalVisible(true)} style={{ flexDirection: "row", alignItems: "center", gap: 5, backgroundColor: "rgba(0, 150, 136, 0.50)", padding: 10 }}>
+        <Pressable onPress={() => setModalVisible(true)} style={{ flexDirection: "row", alignItems: "center", gap: 5, backgroundColor: "#00968880", padding: 10 }}>
             <Ionicons name="location-outline" size={24} color="black" />
             <Text style={{ fontSize: 13, fontWeight: 500 }}>Deliver to Sujan - Bangalore 625706</Text>
             <MaterialIcons name="keyboard-arrow-down" size={24} color="black" />

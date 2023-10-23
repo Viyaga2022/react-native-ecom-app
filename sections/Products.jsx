@@ -1,7 +1,7 @@
 import { Pressable, StyleSheet, Text, View, Image } from 'react-native'
 import React, { useCallback, useEffect, useState } from 'react'
 
-import ProductBox from './ProductBox'
+import ProductBox from '../components/home/ProductBox'
 import DropDownPicker from 'react-native-dropdown-picker'
 
 const Products = () => {
