@@ -87,7 +87,7 @@ const sendVerificationEmail = ash(async (email, verificationToken) => {
         service: "gmail",
         auth: {
             user: "mohan2609kumar@gmail.com",
-            pass: "souh quce kjho atwx"
+            pass: "zmbq whob pzrn gnto"
         }
     })
 

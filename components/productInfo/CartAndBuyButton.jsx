@@ -8,7 +8,7 @@ const CartAndBuyButton = ({ item }) => {
   const dispatch = useDispatch()
 
   const addToCartClicked = (item) => {
-    console.log({Hello:item})
+    console.log({ Hello: item })
     if (addToCartText === "ADD TO CART") {
       setAddToCartText("ADDED TO CART")
       dispatch(addToCart(item))
@@ -19,14 +19,24 @@ const CartAndBuyButton = ({ item }) => {
   }
 
   const cart = useSelector((state) => state.cart.cart)
-  console.log({cart});
+  console.log({ cart });
 
   return (
-    <View style={{ marginTop: 45 }}>
-      <Pressable onPress={() => addToCartClicked(item)} style={{ alignItems: "center", justifyContent: "center", backgroundColor: "#009688", padding: 15, margin: 10, borderRadius: 15, flex: 1 }}>
-        <Text style={{ color: "white", fontSize: 18, fontWeight: 500 }}>{addToCartText}</Text>
-      </Pressable>
-    </View>
+    <Pressable
+      onPress={() => addToCartClicked(item)}
+      style={{
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "#009688",
+        padding: 15,
+        margin: 10,
+        borderRadius: 15,
+        flex: 1,
+        marginTop:20
+      }}>
+      <Text style={{ color: "white", fontSize: 18, fontWeight: 500 }}>{addToCartText}</Text>
+    </Pressable>
+
   )
 }
 
