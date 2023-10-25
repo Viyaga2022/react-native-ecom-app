@@ -59,7 +59,7 @@ const axiosAuthHeaders = async (navigation) => {
 }
 
 const myAccount = async (navigation) => {
-  AsyncStorage.setItem('auth', '')
+  //AsyncStorage.setItem('auth', '')
   try {
     const headers = await axiosAuthHeaders(navigation)
     const response = await axios.get('http://10.0.2.2:6000/api/user/myAccount', headers)
