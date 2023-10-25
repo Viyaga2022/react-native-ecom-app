@@ -25,7 +25,7 @@ const ProductImage = ({ image }) => {
                     alignItems: "center",
                     justifyContent: "center",
                     position: "absolute",
-                    top: 30,
+                    top: 20,
                     left: 20
                 }}>
                 <AntDesign name="arrowleft" size={24} color="white" />
@@ -40,7 +40,7 @@ const ProductImage = ({ image }) => {
                     alignItems: "center",
                     justifyContent: "center",
                     position: "absolute",
-                    top: 30,
+                    top: 20,
                     right: 20,
                 }}>
                 <Ionicons name="heart-sharp" size={24} color="white" />

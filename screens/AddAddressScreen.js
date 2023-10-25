@@ -7,6 +7,7 @@ import HeaderBox from '../components/HeaderBox';
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
 import { addAddress } from '../components/commonFunctions'
+import CheckLoginStatus from '../components/CheckLoginStatus';
 
 const AddAddressScreen = () => {
   const [fullName, setFullName] = useState("")
@@ -43,6 +44,7 @@ const AddAddressScreen = () => {
         backgroundColor: "white"
       }}
     >
+      <CheckLoginStatus />
       <ScrollView overScrollMode='never'>
         <HeaderBox title="Add a new Address" />
 

@@ -14,7 +14,6 @@ const LoginContent = () => {
   const handleLogin = async () => {
     const loginData = { email, password }
     await loginUser(loginData, navigation)
-    console.log({navigation})
   }
 
   return (
@@ -36,7 +35,7 @@ const LoginContent = () => {
           }}
         >
           <MaterialIcons style={{ marginLeft: 8 }} name="email" size={24} color="gray" />
-          <TextInput value={email} onChange={(value) => { console.log(value.nativeEvent.text); setEmail(value.nativeEvent.text) }} style={{ color: "gray", marginVertical: 10, width: 300, fontSize: email ? 16 : 16 }} placeholder='Enter Your Email' />
+          <TextInput value={email} onChange={(value) => setEmail(value.nativeEvent.text) } style={{ color: "gray", marginVertical: 10, width: 300, fontSize: email ? 16 : 16 }} placeholder='Enter Your Email' />
         </View>
       </View>
 
@@ -53,7 +52,7 @@ const LoginContent = () => {
           }}
         >
           <AntDesign style={{ marginLeft: 8 }} name="lock1" size={24} color="black" />
-          <TextInput value={password} onChange={(value) => { console.log(value.nativeEvent.text); setPassword(value.nativeEvent.text) }} secureTextEntry={true} style={{ color: "gray", marginVertical: 10, width: 300 }} placeholder='Enter Your Password' />
+          <TextInput value={password} onChange={(value) => setPassword(value.nativeEvent.text)} secureTextEntry={true} style={{ color: "gray", marginVertical: 10, width: 300 }} placeholder='Enter Your Password' />
         </View>
       </View>
 

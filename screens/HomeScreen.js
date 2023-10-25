@@ -14,7 +14,7 @@ import AddressModal from '../sections/AddressModal'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 const HomeScreen = () => {
   const insets = useSafeAreaInsets()
-  //AsyncStorage.setItem("auth", "")
+  
   return (
     <>
       <CheckLoginStatus />
