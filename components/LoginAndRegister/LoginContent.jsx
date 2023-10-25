@@ -1,36 +1,20 @@
-import { StyleSheet, Text, View, KeyboardAvoidingView, TextInput, Pressable, Alert  } from 'react-native'
+import { StyleSheet, Text, View, KeyboardAvoidingView, TextInput, Pressable, Alert } from 'react-native'
 import React, { useState } from 'react'
 import { MaterialIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import axios from 'axios'
-import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import { loginUser } from '../commonFunctions';
 
 const LoginContent = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const navigation = useNavigation()
 
-  const handleLogin = () => {
-    const loginData = {
-      email,
-      password
-    }
-
-    axios.post('http://10.0.2.2:6000/api/user/login', loginData)
-      .then((response) => {
-        if (response.data.loginStatus) {
-          const token = response.data.jwtToken
-          AsyncStorage.setItem('auth', token)
-          navigation.replace('Main')
-        } else {
-          Alert.alert(response.data.message, "If Don't have an account please Sign up")
-        }
-
-      }).catch((error) => {
-        console.log(error)
-        Alert.alert("", "An error occurred please try after sometime")
-      })
+  const handleLogin = async () => {
+    const loginData = { email, password }
+    await loginUser(loginData, navigation)
+    console.log({navigation})
   }
 
   return (

@@ -1,25 +1,21 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useNavigation } from '@react-navigation/native'
 
-export const CheckLoginStatus = () => {
-    const navigation = useNavigation()
+import { myAccount } from './commonFunctions'
 
-    const check = async () => {
-        try {
-            const token = await AsyncStorage.getItem('auth')
-            if (!token) {
-                navigation.replace('Login')
-            }
-        } catch (error) {
-            console.log(error)
-        }
-    }
-    check()
+export const CheckLoginStatus = () => {
+  const navigation = useNavigation()
+
+  const check = async () => {
+    const userId = await myAccount(navigation)
+    console.log({userId})
+  }
+
+  check()
 
   return (
-   <></>
+    <></>
   )
 }
 

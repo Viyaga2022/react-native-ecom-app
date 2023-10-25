@@ -16,9 +16,9 @@ const registerUser = ash(async (req, res) => {
 
         // validation
         if (!name || !email || !password) {
-            return res.status(200).json({ message: "Please Enter The Required Field", registrationStatus: "failed" })
+            return res.status(200).json({ message: "Please Enter The Required Field", isRegistered: false })
         } else if (existingUser) {
-            return res.status(200).json({ message: "Email Already Registered", registrationStatus: "failed" })
+            return res.status(200).json({ message: "Email Already Registered", isRegistered: false })
         }
 
         const verificationToken = crypto.randomBytes(20).toString('hex')
@@ -33,7 +33,7 @@ const registerUser = ash(async (req, res) => {
         })
 
         sendVerificationEmail(email, verificationToken)
-        return res.status(200).json({ message: "You have registered successfully", registrationStatus: "success" })
+        return res.status(200).json({ message: "You have registered successfully", isRegistered:true })
 
     } catch (e) {
         console.log(e)
@@ -63,6 +63,7 @@ const loginUser = ash(async (req, res) => {
     }
 })
 
+// Verify Email
 const verifyEmail = ash(async (req, res) => {
     const verificationToken = req.params.token
     const user = await User.findOne({ verificationToken })
@@ -76,6 +77,30 @@ const verifyEmail = ash(async (req, res) => {
     await user.save()
 
     res.status(200).json({ message: "email verified" })
+})
+
+//get myaccount 
+
+const getMyAccountId = (req,res) => {
+    res.status(200).json({userId:req.user._id, isAuthorized:true})
+}
+
+// Save User Address
+const saveAddress = ash(async (req, res) => {
+    
+    const { fullName, mobileNo, pincode,
+        state, city, houseNo, street, landmark } = req.body
+
+    if (!fullName || !mobileNo || !pincode || !state || !city ||
+        !houseNo || !street || !landmark) {
+           return res.status(200).json({ message: "Please Enter The Required Field", isSaved:false})
+    } else {
+        const address = {name:fullName, mobileNo, houseNo, street, landmark, city, state, pincode}
+        req.user.address.push(address)
+        await req.user.save()
+        console.log(req.user);
+        return res.status(200).json({ message: "Address Saved Successfully", isSaved:true})
+    }
 })
 
 // Common Functions ======================
@@ -117,4 +142,6 @@ module.exports = {
     registerUser,
     loginUser,
     verifyEmail,
+    getMyAccountId,
+    saveAddress,
 }

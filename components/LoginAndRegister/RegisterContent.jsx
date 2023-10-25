@@ -4,7 +4,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import axios from 'axios';
+import { registerUser } from '../commonFunctions';
 
 const RegisterContent = () => {
   const [name, setName] = React.useState("")
@@ -12,33 +12,12 @@ const RegisterContent = () => {
   const [password, setPassword] = React.useState("")
   const navigation = useNavigation()
 
-  const handleRegister = () => {
-    const userData = {
-      name: name,
-      email: userEmail,
-      password: password,
-    }
-    //Send Request to backend API
-    axios.post('http://10.0.2.2:6000/api/user/register', userData)
-      .then((response) => {
-        if (response.data.registrationStatus === "success") {
-          Alert.alert("Registeration Successfull", response.data.message, [
-            {
-              text: "OK",
-              onPress: (() => navigation.navigate("Login"))
-            }
-          ])
-          setName("")
-          setUserEmail("")
-          setPassword("")
-        } else {
-          Alert.alert("", response.data.message)
-        }
-      })
-      .catch((error) => {
-        console.log(error)
-        Alert.alert("Registeration Failed", "An error occurred")
-      })
+  const handleRegister = async() => {
+    const userData = { name, email: userEmail, password}
+    await registerUser(userData, navigation)
+    setName("")
+    setUserEmail("")
+    setPassword("")
   }
 
   return (
